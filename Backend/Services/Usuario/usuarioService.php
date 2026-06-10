@@ -96,6 +96,8 @@ class UsuarioService
 
         try {
 
+            $usuarioDados['cpf'] = preg_replace('/\D/', '', $usuarioDados['cpf']);
+
             $usuario = $this->buscarUsuarioPorEmail($emailUsuario);
 
             if ($usuario['sucesso'] === false) {

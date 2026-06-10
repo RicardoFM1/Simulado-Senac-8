@@ -47,15 +47,34 @@ class AcompanhanteService
 
     public function listarAcompanhantes()
     {
-        $query = $this->db->query('SELECT * FROM acompanhantes');
+        $query = $this->db->query('SELECT a.id_acompanhante, a.nome as nome_acompanhante, a.sobrenome as sobrenome_acompanhante,
+        a.email as email_acompanhante, a.cpf as cpf_acompanhante, a.idade, co.nome as nome_convidado,
+        co.sobrenome as sobrenome_convidado, co.cpf as cpf_convidado
+        FROM acompanhantes a INNER JOIN convidado co ON a.convidado_idconvidado = co.id_convidado');
 
         $query->execute();
+        $resultado = [];
 
-        $acompanhantes = $query->fetchAll();
+        while ($row = $query->fetch()) {
+
+            $resultado[] = [
+                'id_acompanhante' => $row['id_acompanhante'],
+                'nome' => $row['nome_acompanhante'],
+                'sobrenome' => $row['sobrenome_acompanhante'],
+                'email' => $row['email_acompanhante'],
+                'cpf' => $row['cpf_acompanhante'],
+                'idade' => $row['idade'],
+                'convidado' => [
+                    'nome' => $row['nome_convidado'],
+                    'sobrenome' => $row['sobrenome_convidado'],
+                    'cpf' => $row['cpf_convidado']
+                ]
+            ];
+        }
 
         return [
             'sucesso' => true,
-            'dados' => $acompanhantes
+            'dados' => $resultado
         ];
     }
 

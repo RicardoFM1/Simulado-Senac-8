@@ -19,15 +19,37 @@ class CheckinService
 
     public function listarCheckins()
     {
-        $query = $this->db->query('SELECT * FROM checkin');
+        $query = $this->db->query('SELECT c.data_e_hora, c.status, u.nome as email_usuario, u.sobrenome as sobrenome_usuario, u.cpf as cpf_usuario,
+        co.nome as nome_convidado, co.sobrenome as sobrenome_convidado, co.cpf as cpf_convidado, co.id_convidado
+        FROM checkin c INNER JOIN usuario u ON c.usuario_idusuairo = u.id_usuario INNER JOIN convidado co ON c.convidado_idconvidado = co.id_convidado');
 
         $query->execute();
+        $resultado = [];
 
-        $checkins = $query->fetchAll();
+        while($row = $query->fetch()){
+            $data = new DateTime($row['data_e_hora']);
+            $dataFormatada = $data->format('d/m/Y H:i:s');
+
+            $resultado[] = [
+                'id_convidado' => $row['id_convidado'],
+                'data_e_hora' => $dataFormatada,
+                'status' => $row['status'],
+                'usuario' => [
+                    'nome' => $row['nome_usuario'],
+                    'sobrenome' => $row['sobrenome_usuario'],
+                    'cpf' => $row['cpf_usuario']
+                ],
+                'convidado' => [
+                    'nome' => $row['nome_convidado'],
+                    'sobrenome' => $row['sobrenome_convidado'],
+                    'cpf' => $row['cpf_convidado']
+                ]
+            ];
+        }
 
         return [
             'sucesso' => true,
-            'dados' => $checkins
+            'dados' => $resultado
         ];
     }
 

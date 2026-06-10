@@ -10,7 +10,7 @@ class Middleware
     {
         try {
 
-            $token = [];
+            $token = null;
 
             if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
                 $token = $_SERVER['HTTP_AUTHORIZATION'];
@@ -29,6 +29,8 @@ class Middleware
                 exit;
             }
 
+           
+
             $tokenPartes = explode(' ', $token);
 
             if (count($tokenPartes) !== 2) {
@@ -40,9 +42,12 @@ class Middleware
                 exit;
             }
 
-            $jwt = JWT::decode($tokenPartes[1], new Key($_ENV['CHAVE_SECRETA'], 'HS256'));
+          
 
-            return $jwt;
+
+            return JWT::decode($tokenPartes[1], new Key($_ENV['CHAVE_SECRETA'], 'HS256'));
+
+         
 
             
         } catch (ExpiredException $e) {

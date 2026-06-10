@@ -62,7 +62,8 @@ class UsuarioService
 
             $usuarioDados['cpf'] = preg_replace('/\D/', '', $usuarioDados['cpf']);
 
-            $criar = $this->db->prepare('INSERT INTO usuario (nome, email, cpf, senha, cargo) VALUES (:nome, :email, :cpf, :senha, :cargo');;
+            $criar = $this->db->prepare('INSERT INTO usuario (nome, email, cpf, senha, cargo) 
+            VALUES (:nome, :email, :cpf, :senha, :cargo)');
 
             $criar->execute([
                 ':nome' => $usuarioDados['nome'],
@@ -86,7 +87,7 @@ class UsuarioService
                 throw new Exception('Cpf já em uso', 409);
             }
 
-            throw new Exception('Erro ao tentar criar usuário', 500);
+            throw new Exception('Erro ao tentar criar usuário' . $e->getMessage(), 500);
         }
     }
 

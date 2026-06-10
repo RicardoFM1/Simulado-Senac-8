@@ -160,6 +160,17 @@ class ConvidadoService
                 $convidadoDados['confirmacao'] = $convidado['dados']['confirmacao'];
             }
 
+
+            $mesa = new MesaService();
+            $mesaReferenciada = $mesa->buscarMesaPorId($convidadoDados['mesa_idmesa']);
+            $convidadosComReferencia = $this->buscarConvidadosPorMesaId($convidadoDados['mesa_idmesa']);
+
+            if ($convidadosComReferencia['sucesso'] === true) {
+                if (count($convidadosComReferencia['dados']) >= $mesaReferenciada['dados']['capacidade'] && $convidado['dados']['mesa_idmesa'] !== $convidadoDados['mesa_idmesa']) {
+                    throw new Exception('Mesa lotada', 409);
+                }
+            }
+
             $atualizar = $this->db->prepare('UPDATE convidado SET nome = :nome, sobrenome = :sobrenome, email = :email, cpf = :cpf, confirmacao = :confirmacao, categoria = :categoria, telefone = :telefone,
             mesa_idmesa = :mesa_idmesa WHERE email = :email_convidado');
 

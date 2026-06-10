@@ -12,6 +12,8 @@ require_once __DIR__ . "/../Controllers/Mesa/mesaController.php";
 require_once __DIR__ . "/../Controllers/Convidado/convidadoController.php";
 require_once __DIR__ . "/../Controllers/Checkin/checkinController.php";
 require_once __DIR__ . "/../Controllers/Acompanhante/acompanhanteController.php";
+require_once __DIR__ . "/../Controllers/Dashboard/dashboardController.php";
+
 
 
 
@@ -138,6 +140,14 @@ if ($rota === '/retrieve') {
         http_response_code(200);
         echo json_encode(Middleware::validarMiddleware());
         exit;
+    }
+}
+
+if ($rota === '/dashboard') {
+    $controller = new DashboardController();
+    if ($metodo === 'GET') {
+
+        $controller->listarDashboard();
     }
 }
 

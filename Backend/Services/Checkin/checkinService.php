@@ -69,7 +69,7 @@ class CheckinService
                 throw new Exception('Convidado não encontrado', 404);
             }
 
-            if($convidado['confirmacao'] === 'confirmado'){
+            if($convidado['confirmacao'] === 'confirmado' && $jwt->dados->cargo_usuario !== "administrador"){
                 throw new Exception('Convidado já confirmado', 409);
             }
 

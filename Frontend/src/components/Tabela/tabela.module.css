@@ -1,4 +1,8 @@
-
+.divTable{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
 
 .tabela{
     border: 1px solid rgb(158, 103, 64) !important;
@@ -7,8 +11,8 @@
     border-spacing: 0 !important;
     overflow: hidden;
     margin-top: 50px;
-    
-
+    width: 90vw !important;
+  
 
 }
 

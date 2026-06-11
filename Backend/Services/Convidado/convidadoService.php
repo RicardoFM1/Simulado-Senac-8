@@ -179,6 +179,7 @@ class ConvidadoService
                 ':sobrenome' => $convidadoDados['sobrenome'],
                 ':email' => $convidadoDados['email'],
                 ':cpf' => $convidadoDados['cpf'],
+                ':confirmacao' => $convidadoDados['confirmacao'],
                 ':categoria' => $convidadoDados['categoria'],
                 ':telefone' => $convidadoDados['telefone'],
                 ':mesa_idmesa' => $convidadoDados['mesa_idmesa'],
@@ -203,7 +204,7 @@ class ConvidadoService
                 throw new Exception('Mesa referenciada não encontrada', 409);
             }
 
-            throw new Exception('Erro ao tentar atualizar convidado', 500);
+            throw new Exception('Erro ao tentar atualizar convidado' . $e->getMessage(), 500);
         }
     }
 

@@ -20,10 +20,28 @@
    
 }
 
+.logo{
+    max-width: 70px;
+}
+
+.divHeaderForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
 .divForm {
     display: flex;
+    flex-direction: column;
     flex: 1;
     align-items: center;
     justify-content: center;
     padding: 40px;
+}
+
+.botaoSubmit{
+    background-color: rgb(158, 103, 64) !important;
+    border: none !important;
 }

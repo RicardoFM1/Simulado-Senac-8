@@ -1,0 +1,17 @@
+
+
+.tabela{
+    border: 1px solid rgb(158, 103, 64) !important;
+    border-radius: 10px !important;
+    border-collapse: separate !important; 
+    border-spacing: 0 !important;
+    overflow: hidden;
+    margin-top: 50px;
+    
+
+
+}
+
+.tabelaHeader{
+    background-color: rgba(158, 103, 64, 0.678) !important;
+}

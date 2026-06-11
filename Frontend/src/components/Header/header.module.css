@@ -65,7 +65,7 @@
 .botaoSair {
     background-color: rgba(227, 171, 132, 0.281) !important;
     border: none !important;
-    color: black;
+    color: black !important;
 }
 
 .botaoSair:hover {
@@ -81,13 +81,13 @@
 }
 
 .dropdownItens >button {
-    background-color: rgba(227, 171, 132, 0.281);
+    background-color: rgba(227, 171, 132, 0.281) !important;
     border: unset !important;
     color: unset !important;
 }
 
 .dropdownItens > button:hover {
-    background-color: rgba(227, 171, 132, 0.281);
+    background-color: rgba(227, 171, 132, 0.281) !important;
     border: unset !important;
     color: unset !important;
 }

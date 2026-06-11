@@ -4,7 +4,7 @@ import imagemCasamento from "../../assets/imagemCasamento.png"
 import logoCasamento from "../../assets/logoCasamento.png"
 
 import {Button, Form, InputGroup, Stack} from "react-bootstrap"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { FaEye } from "react-icons/fa";
@@ -28,7 +28,14 @@ const Login = () => {
         setFormData((prev) => ({...prev, [name]: value}));
     }
 
+
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if(localStorage.getItem('token')){
+            navigate('/')
+        }
+    }, [])
     const handleSubmit = async(e) => {
         e.preventDefault();
 
